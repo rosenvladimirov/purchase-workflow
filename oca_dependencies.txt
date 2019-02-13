@@ -1,4 +1,0 @@
-server-tools
-product-attribute
-server-ux
-hr
