@@ -14,9 +14,7 @@ class PurchaseOrder(models.Model):
 
     @api.onchange('partner_contact_id')
     def onchange_partner_contact_id(self):
-        if not self.partner_contact_id:
-            self.partner_id = False
-        else:
+        if self.partner_contact_id:
             self.partner_id = self.partner_contact_id.parent_id
         return {'domain': {'partner_id': self.partner_contact_id and [('id', '=', self.partner_contact_id.parent_id.id)] or []}}
 

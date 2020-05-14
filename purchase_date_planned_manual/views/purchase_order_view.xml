@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record id="view_purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form - purchase_date_planned_manual</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field name="predicted_arrival_late" invisible="1"/>
+                <button string="Arriving late"
+                        attrs="{'invisible': [('predicted_arrival_late', '=', False)]}"
+                        name="action_delayed_line"
+                        type="object"
+                        icon="fa-exclamation-triangle"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-danger">predicted_arrival_late is True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='date_planned']" position="after">
+                <field name="date_confirmed"/>
+                <!-- <field name="date_requested"/> -->
+            </xpath>
+            <field name="picking_type_id" position="before">
+                <label for="date_confirmed"/>
+                <div>
+                    <field name="date_confirmed" attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                    <button name="action_set_date_confirmed" type="object"
+                        states="draft,sent"
+                        string="Set confirmed date to all order lines"
+                        help="This changes the confirmed date of all order lines to the given date"
+                        class="fa fa-calendar o_icon_button oe_edit_only"/>
+                </div>
+            </field>
+        </field>
+    </record>
+    <record id="purchase_order_line_tree" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="date_planned" position="after">
+                <field name="date_confirmed"  widget="date"/>
+                <!-- <field name="date_requested"  widget="date"/> -->
+            </field>
+        </field>
+    </record>
+</odoo>
