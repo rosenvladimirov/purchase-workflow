@@ -16,7 +16,8 @@ class PurchaseOrder(models.Model):
     def onchange_partner_contact_id(self):
         if self.partner_contact_id:
             self.partner_id = self.partner_contact_id.parent_id
-        return {'domain': {'partner_id': self.partner_contact_id and [('id', '=', self.partner_contact_id.parent_id.id)] or []}}
+            return {'domain': {'partner_id': [('id', '=', self.partner_contact_id.parent_id.id), ('supplier','=', True), ('is_company', '=', True)]}}
+        return {'domain': {'partner_id': [('supplier','=', True), ('is_company', '=', True)]}}
 
     @api.onchange('partner_id', 'company_id')
     def onchange_partner_id(self):
@@ -26,7 +27,7 @@ class PurchaseOrder(models.Model):
             if self.partner_contact_id:
                 if not res:
                     res = {}
-                res.update({'domain': {'partner_contact_id': [('parent_id', '=', self.partner_id.id)]}})
+                res.update({'domain': {'partner_contact_id': [('parent_id', '=', self.partner_id.id), ('supplier','=', True), ('is_company', '=', False)]}})
         return res
 
     @api.model

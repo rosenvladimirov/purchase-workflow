@@ -6,7 +6,12 @@
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="before">
-                <field name="partner_contact_id" context="{'search_default_parent_id': partner_id, 'default_supplier':1, 'default_customer':0}" domain="[('supplier','=',True)]"/>
+                <field name="partner_contact_id" context="{'search_default_parent_id': partner_id, 'search_default_type_person':1, 'default_supplier':1, 'default_customer':0}" domain="[('supplier','=',True), ('is_company', '=', False)]"/>
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="context">{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}</attribute>
+                <attribute name="domain">[('supplier','=',True), ('is_company', '=', True)]</attribute>
+                <attribute name="default_focus">1</attribute>
             </field>
         </field>
     </record>

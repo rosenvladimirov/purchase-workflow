@@ -14,40 +14,82 @@
                     <field name="include_quotations"/>
                     <field name="pricelist_id" invisible="1"/>
                 </group>
-                <group string="Purchase history">
-                    <field name="line_ids" nolabel="1" readonly="1">
-                        <form>
-                            <div class="oe_button_box" name="button_box">
-                                <button class="oe_stat_button"
-                                        name="save_in_pricelist"
-                                        string="Save in pricelist"
-                                        type="object"
-                                        icon="fa fa-floppy-o"/>
-                                <button class="oe_stat_button"
-                                        string="Set price"
-                                        type="object"
-                                        name="action_set_price"
-                                        icon="fa-check"/>
-                            </div>
-                            <group>
-                                <field name="purchase_order_line_id" invisible="1"/>
-                                <field name="history_purchase_order_line_id" invisible="1"/>
+                <notebook>
+                    <page name="purchase" string="Purchase history">
+                        <field name="line_ids" nolabel="1" readonly="1">
+                            <form>
+                                <div class="oe_button_box" name="button_box">
+                                    <button class="oe_stat_button"
+                                            name="save_in_pricelist"
+                                            string="Save in pricelist"
+                                            type="object"
+                                            icon="fa fa-floppy-o"/>
+                                    <button class="oe_stat_button"
+                                            string="Set price"
+                                            type="object"
+                                            name="action_set_price"
+                                            icon="fa-check"/>
+                                </div>
+                                <group>
+                                    <field name="purchase_order_line_id" invisible="1"/>
+                                    <field name="history_purchase_order_line_id" invisible="1"/>
+                                    <field name="order_id"/>
+                                    <field name="partner_id"/>
+                                    <field name="purchase_order_date_order"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="currency_id"/>
+                                </group>
+                            </form>
+                            <tree>
                                 <field name="order_id"/>
                                 <field name="partner_id"/>
                                 <field name="purchase_order_date_order"/>
                                 <field name="product_qty"/>
-                                <field name="price_unit"/>
-                            </group>
-                        </form>
-                        <tree>
-                            <field name="order_id"/>
-                            <field name="partner_id"/>
-                            <field name="purchase_order_date_order"/>
-                            <field name="product_qty"/>
-                            <field name="price_unit"/>
-                        </tree>
-                    </field>
-                </group>
+                                <field name="product_uom"/>
+                                <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="currency_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="moves" string="Stock move history">
+                        <field name="move_line_ids" nolabel="1" readonly="1">
+                            <form>
+                                <button class="oe_stat_button"
+                                                    string="Set price"
+                                                    type="object"
+                                                    name="action_set_price"
+                                                    icon="fa-check"/>
+                                <group>
+                                    <field name="stock_move_line_id" invisible="1"/>
+                                    <field name="history_purchase_order_line_id" invisible="1"/>
+                                    <field name="picking_id"/>
+                                    <field name="partner_id"/>
+                                    <field name="purchase_id"/>
+                                    <field name="stock_move_order_date_order"/>
+                                    <field name="lot_id"/>
+                                    <field name="qty_done"/>
+                                    <field name="price_unit" widget="monetary"/>
+                                    <!-- <field name="purchase_price_unit" string="Purchase price unit"/> -->
+                                    <field name="purchase_currency_id" string="Purchase currency"/>
+                                </group>
+                            </form>
+                            <tree>
+                                <field name="picking_id"/>
+                                <field name="partner_id"/>
+                                <field name="purchase_id"/>
+                                <field name="stock_move_order_date_order"/>
+                                <field name="lot_id"/>
+                                <field name="qty_done"/>
+                                <field name="product_uom"/>
+                                <field name="price_unit" widget="monetary" options="{'currency_field': 'env.user.company_id.currency_id'}"/>
+                                <!-- <field name="purchase_price_unit" string="Purchase price unit"/> -->
+                                <field name="purchase_currency_id" string="Purchase currency"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
                 <field name="purchase_order_line_id" invisible="1"/>
                 <footer>
                     <button special="cancel" string="Close"/>
