@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <control>
+                    <button name="%(act_open_wizard_product_set_add_from_purchase)d"
+                            class="btn-link"
+                            type="action"
+                            string="Add set"
+                            context="{'default_order_id': parent.id, 'default_partner_id': parent.partner_id, 'active_id': parent.id, 'active_model': 'purchase.order'}"/>
+                </control>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Product sets" name="product_sets" invisible="not product_set_ids">
+                    <div class="o_row">
+                        <button
+                            name="action_set_sections"
+                            type="object"
+                            string="Update set sections"
+                            help="Re-order sections for set in lines"
+                            class="btn-link mb-1 px-0"
+                            icon="fa-refresh"
+                            confirm="This will update all sequences in lines and recreate the sections."
+                            invisible="product_set_ids"
+                        />
+                    </div>
+                    <field name="product_set_ids" mode="list">
+                        <list>
+                            <field name="order_id" invisible="1"/>
+                            <field name="product_set_id"/>
+                            <field name="quantity"/>
+                            <field name="price_unit"/>
+                            <field name="price_subtotal"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list" position="inside">
+                <field name="product_set_id"
+                       options='{"no_create": True}'
+                       optional="hide"/>
+                <field name="product_set_line_id"
+                       optional="hide"
+                       context="{'search_default_product_set_id': product_set_id, 'default_product_set_id': product_set_id}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
