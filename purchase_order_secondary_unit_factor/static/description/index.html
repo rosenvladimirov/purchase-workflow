@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Purchase Order Secondary Unit with Editable Factor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #875a7b;
+            border-bottom: 2px solid #875a7b;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #875a7b;
+            margin-top: 30px;
+        }
+        .feature {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #875a7b;
+        }
+        .example {
+            background: #e8f4f8;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #2196F3;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Purchase Order Secondary Unit with Editable Factor</h1>
+    
+    <p>
+        <strong>Enhance your purchase orders with flexible secondary units of measure!</strong>
+    </p>
+
+    <p>
+        This module extends the standard Odoo purchase order functionality to allow using 
+        secondary units of measure with <span class="highlight">editable conversion factors</span> 
+        directly in purchase order lines.
+    </p>
+
+    <h2>Key Features</h2>
+    
+    <div class="feature">
+        <h3>✏️ Editable Conversion Factor</h3>
+        <p>
+            Unlike similar modules where the conversion factor is fixed, this module allows 
+            you to <strong>edit the conversion factor directly in each purchase order line</strong>.
+        </p>
+    </div>
+
+    <div class="feature">
+        <h3>🔄 Automatic Calculations</h3>
+        <p>
+            Enter quantity in either primary or secondary units - the other is calculated automatically 
+            using the formula: <code>Primary Qty = Secondary Qty × Factor</code>
+        </p>
+    </div>
+
+    <div class="feature">
+        <h3>📦 Flexible Packaging</h3>
+        <p>
+            Handle special purchase situations where conversion may differ from the standard 
+            (e.g., special packaging, promotional offers) without creating new products.
+        </p>
+    </div>
+
+    <div class="feature">
+        <h3>🔗 Stock Integration</h3>
+        <p>
+            Secondary unit information is seamlessly transferred to stock moves for complete traceability.
+        </p>
+    </div>
+
+    <h2>Use Case Examples</h2>
+
+    <div class="example">
+        <h3>Example 1: Standard Conversion</h3>
+        <p><strong>Product:</strong> Screws</p>
+        <ul>
+            <li>Primary UoM: Units (pcs)</li>
+            <li>Secondary UoM: Box</li>
+            <li>Standard factor: 1 Box = 100 Units</li>
+        </ul>
+        <p><strong>In Purchase Order:</strong></p>
+        <ul>
+            <li>Secondary Qty: <strong>5 Boxes</strong></li>
+            <li>Factor: <strong>100</strong> (default from product)</li>
+            <li>Primary Qty: <strong>500 Units</strong> (automatically calculated)</li>
+        </ul>
+    </div>
+
+    <div class="example">
+        <h3>Example 2: Special Purchase Case</h3>
+        <p><strong>Product:</strong> Screws (same as above)</p>
+        <p>Supplier offers special mega-box:</p>
+        <ul>
+            <li>Secondary Qty: <strong>2 Mega-Boxes</strong></li>
+            <li>Factor: <strong>500</strong> (manually edited!)</li>
+            <li>Primary Qty: <strong>1000 Units</strong> (automatically calculated)</li>
+        </ul>
+        <p>
+            <em>This flexibility allows handling special packaging without creating new products!</em>
+        </p>
+    </div>
+
+    <h2>How It Works</h2>
+
+    <ol>
+        <li>Install the module</li>
+        <li>Configure secondary units on your products (requires product_secondary_unit)</li>
+        <li>Create a purchase order and select a product</li>
+        <li>Choose the secondary unit from the dropdown</li>
+        <li><strong>Edit the conversion factor if needed</strong></li>
+        <li>Enter quantity in either field - the other calculates automatically</li>
+    </ol>
+
+    <h2>Screenshots</h2>
+    
+    <p>
+        <img src="screenshot_purchase_order_form.png" alt="Purchase Order with Secondary Units" style="max-width: 100%; border: 1px solid #ddd; padding: 5px;">
+    </p>
+
+    <h2>Technical Information</h2>
+    
+    <ul>
+        <li><strong>Version:</strong> 18.0.1.0.0</li>
+        <li><strong>License:</strong> AGPL-3</li>
+        <li><strong>Dependencies:</strong> purchase, stock, product_secondary_unit</li>
+        <li><strong>Author:</strong> Rosen Vladimirov, OCA</li>
+    </ul>
+
+    <h2>Support</h2>
+    
+    <p>
+        For bugs or feature requests, please use the 
+        <a href="https://github.com/OCA/purchase-workflow/issues">GitHub Issues</a> page.
+    </p>
+
+    <p>
+        This module is maintained by the 
+        <a href="https://odoo-community.org">Odoo Community Association (OCA)</a>.
+    </p>
+</body>
+</html>

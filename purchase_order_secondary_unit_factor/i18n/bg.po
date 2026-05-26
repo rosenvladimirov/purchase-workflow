@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * purchase_order_secondary_unit_factor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-01 12:00+0000\n"
+"PO-Revision-Date: 2025-01-01 12:00+0000\n"
+"Last-Translator: Rosen Vladimirov <rosen.vladimirov@digitalsprint.eu>\n"
+"Language-Team: Bulgarian\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit_factor.field_purchase_order_line__secondary_uom_id
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit_factor.field_stock_move__secondary_uom_id
+msgid "Secondary UoM"
+msgstr "Вторична мерна единица"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit_factor.field_purchase_order_line__secondary_uom_qty
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit_factor.field_stock_move__secondary_uom_qty
+msgid "Secondary Qty"
+msgstr "Вторично количество"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit_factor.field_purchase_order_line__secondary_uom_factor
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit_factor.field_stock_move__secondary_uom_factor
+msgid "Conversion Factor"
+msgstr "Конверсионен коефициент"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,help:purchase_order_secondary_unit_factor.field_purchase_order_line__secondary_uom_factor
+msgid "Conversion factor between primary and secondary unit. This factor can be edited manually for each line.\nExample: If 1 Box = 12 Units, factor = 12.0\nPrimary Qty = Secondary Qty * Factor"
+msgstr "Конверсионен коефициент между основна и вторична единица. Този фактор може да се редактира ръчно за всяка линия.\nПример: Ако 1 Кутия = 12 Броя, фактор = 12.0\nОсновно кол-во = Вторично кол-во * Фактор"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,field_description:purchase_order_secondary_unit_factor.field_purchase_order_line__secondary_uom_factor_editable
+msgid "Factor Editable"
+msgstr "Редактируем фактор"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,help:purchase_order_secondary_unit_factor.field_purchase_order_line__secondary_uom_factor_editable
+msgid "Indicates if the conversion factor can be manually edited"
+msgstr "Показва дали конверсионният фактор може да се редактира ръчно"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,help:purchase_order_secondary_unit_factor.field_stock_move__secondary_uom_id
+msgid "Secondary unit of measure used in the purchase order"
+msgstr "Вторична мерна единица използвана в поръчката за покупка"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,help:purchase_order_secondary_unit_factor.field_stock_move__secondary_uom_qty
+msgid "Quantity in secondary unit of measure"
+msgstr "Количество във вторична мерна единица"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model.fields,help:purchase_order_secondary_unit_factor.field_stock_move__secondary_uom_factor
+msgid "Conversion factor used in the purchase order line"
+msgstr "Конверсионен коефициент използван в линията на поръчката"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model,name:purchase_order_secondary_unit_factor.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Линия на поръчка за покупка"
+
+#. module: purchase_order_secondary_unit_factor
+#: model:ir.model,name:purchase_order_secondary_unit_factor.model_stock_move
+msgid "Stock Move"
+msgstr "Складово движение"
+
+#. module: purchase_order_secondary_unit_factor
+#: model_terms:ir.ui.view,arch_db:purchase_order_secondary_unit_factor.purchase_order_form_secondary_unit
+msgid "Secondary Quantity"
+msgstr "Вторично количество"
