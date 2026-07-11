@@ -6,20 +6,24 @@ from odoo import models
 class MrpBom(models.Model):
     _inherit = "mrp.bom"
 
-    # ── Лепило: канонична последна покупна цена ───────────────────────────
+    # ── Лепило: канонична последна покупна цена (в costing мярката) ───────
     # mrp_design_matrix_cost има собствен inline `_last_po_price` (заявка към
     # purchase.order.line, БЕЗ зависимост към модул). Тук пренасочваме този
     # единствен seam към поддържания `purchase_last_price_info` — така
     # „последна покупна цена" има ЕДИН източник на истина (state purchase/done,
-    # company scope, валута), а не два дублирани разклона.
+    # company scope).
+    # ВАЖНО за коста: четем `price_unit_product_uom` на PO реда (core-ското поле
+    # = `product_uom_id._compute_price(price_unit, product.uom_id)`), а НЕ суровия
+    # price_unit — иначе покупка в различна мярка (напр. дузини) би внесла грешен
+    # кост. Конверсията е на Odoo core, не наша.
     def _last_po_price(self, product):
         if not product:
             return 0.0
-        # last_purchase_price е compute на product.product от
-        # purchase_last_price_info; при 0/липса падаме към engine логиката.
-        price = getattr(product, "last_purchase_price", 0.0)
-        if price:
-            return price
+        line = getattr(product, "last_purchase_line_id", False)
+        if line:
+            price = line.price_unit_product_uom
+            if price:
+                return price
         return super()._last_po_price(product)
 
     # ── Публичен API за вертикалните индустрия модули (напр. Solid 55) ─────
